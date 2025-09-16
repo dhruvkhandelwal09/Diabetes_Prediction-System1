@@ -1,13 +1,15 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import pickle
 
-# ✅ Load model from same folder
-with open("Assignment_7/Trained_model.sav", "rb") as file:
+# ✅ Use absolute path to your trained model
+model_path = r"C:\Users\Vikas\Downloads\CSI-main\CSI-main\Assignment_7\Trained_model.sav"
+
+# Load model
+with open(model_path, "rb") as file:
     model = pickle.load(file)
 
-st.title("Diabetes Prediction App")
+st.title("🩺 Diabetes Prediction App")
 
 # Input features
 pregnancies = st.number_input("Pregnancies", min_value=0, step=1)
@@ -19,13 +21,17 @@ bmi = st.number_input("BMI", min_value=0.0, format="%.2f")
 dpf = st.number_input("Diabetes Pedigree Function", min_value=0.0, format="%.3f")
 age = st.number_input("Age", min_value=0, step=1)
 
-# Make prediction
-input_data = pd.DataFrame([[pregnancies, glucose, blood_pressure, skin_thickness,
-                            insulin, bmi, dpf, age]],
-                          columns=["Pregnancies", "Glucose", "BloodPressure", "SkinThickness",
-                                   "Insulin", "BMI", "DiabetesPedigreeFunction", "Age"])
+# Prepare input data
+input_data = pd.DataFrame(
+    [[pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, dpf, age]],
+    columns=[
+        "Pregnancies", "Glucose", "BloodPressure", "SkinThickness",
+        "Insulin", "BMI", "DiabetesPedigreeFunction", "Age"
+    ]
+)
 
+# Prediction
 if st.button("Predict"):
     prediction = model.predict(input_data)[0]
-    result = "Diabetic" if prediction == 1 else "Not Diabetic"
+    result = "🩸 Diabetic" if prediction == 1 else "✅ Not Diabetic"
     st.success(f"The patient is predicted to be: **{result}**")
