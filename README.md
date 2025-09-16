@@ -2,7 +2,6 @@
 
 This project leverages a machine learning model to predict whether a person is diabetic based on medical features.
 
-👉 **Live App:** [Click here to try the Streamlit App](https://6kuxclj5kyuma8wxs3fjye.streamlit.app/)
 
 ---
 
