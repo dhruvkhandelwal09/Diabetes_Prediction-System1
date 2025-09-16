@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 
 # ✅ Use absolute path to your trained model
-model_path = r"C:\Users\Vikas\Downloads\CSI-main\CSI-main\Assignment_7\Trained_model.sav"
+model_path = "Trained_model.sav"
 
 # Load model
 with open(model_path, "rb") as file:
